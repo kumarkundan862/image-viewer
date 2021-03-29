@@ -5,5 +5,24 @@
 .app-logo{
     color: #fff;
     font-size: 18px;
-    padding: 10px;
+    padding: 6px 10px 10px 10px;
+}
+
+.login-card{
+    padding-top: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+.dispNone{
+    display: none;
+}
+
+.red{
+    color:red;
+    font-weight: bold;
+}
+
+.dispBlock{
+    display: block;
 }
