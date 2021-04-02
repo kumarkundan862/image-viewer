@@ -4,10 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Login from './screens/login/Login';
 
-ReactDOM.render(
-    <Login/>,
-  document.getElementById('root')
-);
+import Controller from './screens/Controller';
+
+ReactDOM.render(<Controller />, document.getElementById('root'));
+// registerServiceWorker();
+
+// ReactDOM.render(
+//     <Login/>,
+//   document.getElementById('root')
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

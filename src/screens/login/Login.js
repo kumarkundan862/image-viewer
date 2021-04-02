@@ -27,6 +27,7 @@ class Login extends Component {
 
         var userName = "user";
         var passWord = "user@123";
+        var accessToken = "";
 
         this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) :
             (this.state.username === userName) ? this.setState(
@@ -37,6 +38,7 @@ class Login extends Component {
             (this.state.loginPassword === passWord) ? this.setState(
                 { incorrectValues: "dispNone", loginPasswordRequired: "dispNone" }) :
                 this.setState({ incorrectValues: "dispBlock", loginPasswordRequired: "dispNone" });
+
 
     }
 
