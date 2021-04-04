@@ -4,11 +4,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
-
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Header from '../../common/header/Header';
 
 class Login extends Component {
 
@@ -27,19 +27,21 @@ class Login extends Component {
 
         var userName = "user";
         var passWord = "user@123";
-        var accessToken = "";
+        var accessToken = "IGQVJVUExCa2FhNkRJSTVMUGloRTFqMEtLc2NIMEpZAYW01ZAkczRlA2MTNLUE5JMDRmWEVTRFpERXB2aTc0TUpjQkIxbDJlMHRhZATJxMkVPLVVsNVNqS21FMHZASUHdha1dtenpsb09rakpmMkJVYmp4TzE0VXAwTVZABWXB3";
 
-        this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) :
-            (this.state.username === userName) ? this.setState(
-                { incorrectValues: "dispNone", usernameRequired: "dispNone" }) :
-                this.setState({ incorrectValues: "dispBlock", usernameRequired: "dispNone" });
+          this.state.username !== "" ? this.setState({usernameRequired:"dispNone"}):this.setState({usernameRequired:"dispBlock"});
+          this.state.loginPassword !== "" ? this.setState({loginPasswordRequired:"dispNone"}):this.setState({loginPasswordRequired:"dispBlock"});
 
-        this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) :
-            (this.state.loginPassword === passWord) ? this.setState(
-                { incorrectValues: "dispNone", loginPasswordRequired: "dispNone" }) :
-                this.setState({ incorrectValues: "dispBlock", loginPasswordRequired: "dispNone" });
+          if(this.state.username === userName && this.state.loginPassword===passWord){
 
+            sessionStorage.setItem("access-token",accessToken);
+            this.props.history.push('/home');
+            this.setState({incorrectValues:"dispNone"});
+          }
 
+          else if(this.state.username!=="" && this.state.loginPassword!==""){
+              this.setState({incorrectValues:"dispBlock"});
+          }
     }
 
     inputUsernameChangeHandler = (e) => {
@@ -53,9 +55,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <header className="app-header">
-                    <div className="app-logo">Image Viewer</div>
-                </header>
+                <Header />
                 <div className="login-card">
                     <Card>
                         <CardContent style={{padding:"16px 50px 50px 50px"}}>
@@ -83,7 +83,8 @@ class Login extends Component {
                             <FormHelperText className={this.state.incorrectValues}><span
                                 className="red">Incorrect username and/or password</span></FormHelperText><br />
 
-                            <Button variant="contained" color="primary" onClick={this.loginClickHandler}>
+                                <Button variant="contained" color="primary" 
+                                onClick={this.loginClickHandler}>
                                 LOGIN</Button>
 
                         </CardContent>
